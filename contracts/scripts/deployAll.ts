@@ -1,10 +1,12 @@
 import {ethers} from "hardhat";
 
 
+const AGENT_PROMPT = "You are a helpful assistant";
+
 async function main() {
   const oracleAddress: string = await deployOracle();
   console.log()
-
+  await deployAgent(oracleAddress);
   console.log()
   await deployChatGptWithKnowledgeBase("ChatGpt", oracleAddress, "");
   for (let contractName of ["OpenAiChatGpt", "GroqChatGpt", "OpenAiChatGptVision"]) {
@@ -24,6 +26,21 @@ async function deployOracle(): Promise<string> {
   // await oracle.updateWhitelist((await ethers.getSigners())[0].address, true)
 
   return oracle.target as string;
+}
+
+async function deployAgent(oracleAddress: string) {
+  const agent = await ethers.deployContract(
+    "Agent",
+    [
+      oracleAddress,
+      AGENT_PROMPT
+    ], {});
+
+  await agent.waitForDeployment();
+
+  console.log(
+    `Agent deployed to ${agent.target}`
+  );
 }
 
 
