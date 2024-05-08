@@ -14,12 +14,13 @@
 
 <p align="center">
   <a href="#Introduction">Introduction</a> •
-  <a href="#goal">Goal</a> •
-  <a href="#how-it-works">How It Works</a> •
+  <a href="#what-is-fayruz">What is Fayruz?</a> •
+  <a href="#how-it-works">Core Technology: The Fayruz Oracle</a> •
+  <a href="#key-features">Key Features</a> •
+  <a href="#usage-scenarios">Usage Scenarios</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#contracts-addresses ">Contracts Addresses </a> •
 </p>
-
 
 
 ## Introduction 
