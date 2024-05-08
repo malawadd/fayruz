@@ -2,11 +2,13 @@ import {ethers} from "hardhat";
 
 
 const AGENT_PROMPT = "You are a helpful assistant";
+const DALLE_PROMPT = "make an image of: \"solarpunk oil painting "
 
 async function main() {
   const oracleAddress: string = await deployOracle();
   console.log()
   await deployAgent(oracleAddress);
+  await deployDalle(oracleAddress);
   console.log()
   await deployChatGptWithKnowledgeBase("ChatGpt", oracleAddress, "");
   for (let contractName of ["OpenAiChatGpt", "GroqChatGpt", "OpenAiChatGptVision"]) {
@@ -40,6 +42,21 @@ async function deployAgent(oracleAddress: string) {
 
   console.log(
     `Agent deployed to ${agent.target}`
+  );
+}
+
+async function deployDalle(oracleAddress: string) {
+  const agent = await ethers.deployContract(
+    "DalleNft",
+    [
+      oracleAddress,
+      DALLE_PROMPT,
+    ], {});
+
+  await agent.waitForDeployment();
+
+  console.log(
+    `Dall-e deployed to ${agent.target}`
   );
 }
 
