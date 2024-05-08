@@ -5,7 +5,6 @@
 **Install dependencies**
 
 ```
-cd examples
 cp template.env .env
 npm install
 ```
@@ -19,4 +18,9 @@ Rest of this README assumes you are in the `cmd_apps` directory
 **Chat GPT example**
 ```
 npm run chat
+```
+
+**agent example**
+```
+npm run agent
 ```
